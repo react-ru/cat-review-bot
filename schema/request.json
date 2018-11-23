@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "required": ["telegram", "link", "comment"],
+  "properties": {
+    "telegram": {
+      "type": "string",
+      "minLength": 1
+    },
+    "link": {
+      "type": "string",
+      "minLength": 1
+    },
+    "comment": {
+      "type": "string",
+      "minLength": 3
+    }
+  }
+}
