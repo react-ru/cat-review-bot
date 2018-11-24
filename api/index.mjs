@@ -1,6 +1,6 @@
 import debug from 'debug'
 import express from 'express'
-import cors from 'express-cors'
+import cors from 'cors'
 import body from 'body-parser'
 import { v1 } from './v1'
 
