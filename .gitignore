@@ -78,4 +78,5 @@ typings/
 #DynamoDB Local files 
 .dynamodb/ 
 
+public/js/frontend.js
 mongodb_data/
