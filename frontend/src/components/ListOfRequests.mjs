@@ -33,8 +33,6 @@ export class ListOfRequests extends Component {
   handleButtonClick(item, event) {
     event.preventDefault()
     window.open(item.trello.url, '_blank')
-    // window.location = item.trello.url
-    debugger
   }
 
   renderItem(item) {
