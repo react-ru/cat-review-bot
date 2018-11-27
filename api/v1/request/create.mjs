@@ -10,16 +10,19 @@ import moment from 'moment'
 const ajv = new Ajv() 
 const debug = Debug('bot')
 
-export const create = async (req, res) => {
-  const bot = req.app.get('bot')
+const createRequest = req => {
   const valid = ajv.validate(requestSchema, req.body)
   if (!valid) {
     return res.status(400).json(ajv.errors)
   }
-  const request = new Request(req.body)
-  // ---------------------------
-  const chats = await Chat.find({})
-  const message = new Message({
+  return new Request({
+    ...req.body,
+    pubdate: new Date()
+  })
+}
+
+const createMessage = request => {
+  return new Message({
     text: [
       `<b>Пришла новая заявка на ревью!</b>`,
       `От: @${request.telegram}`,
@@ -28,14 +31,20 @@ export const create = async (req, res) => {
       request.comment
     ].join('\n')
   })
+}
+
+const sendMessageToChats = async (request, bot) => {
+  const chats = await Chat.find({})
+  const message = createMessage(request)
   await message.save()
   for (let chat of chats) {
     await chat.sendMessage(bot.telegram, message)
   }
   request.message = message._id
-  await request.save()
-  // ---------------------------
-  await axios({
+}
+
+const createTrelloCard = async request => {
+  const { data } = await axios({
     method: 'POST',
     url: `${process.env.TRELLO_BASE_URL}/cards`,
     params: {
@@ -57,6 +66,13 @@ export const create = async (req, res) => {
       idList: process.env.NEW_CARD_LIST_ID
     }
   })
-  // ---------------------------
+  request.trello = data
+}
+
+export const create = async (req, res) => {
+  const request = createRequest(req)
+  await sendMessageToChats(request, req.app.get('bot'))
+  await createTrelloCard(request)
+  await request.save()
   res.json(request)
 }

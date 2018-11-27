@@ -5,10 +5,12 @@ import {
   Card,
   CardBody,
   CardTitle,
+  CardSubtitle,
   CardText,
   Button
 } from 'reactstrap'
 import { PageHead } from './PageHead'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 export class ListOfRequests extends Component {
   constructor(props) {
@@ -28,6 +30,13 @@ export class ListOfRequests extends Component {
     this.setState({ items })
   }
 
+  handleButtonClick(item, event) {
+    event.preventDefault()
+    window.open(item.trello.url, '_blank')
+    // window.location = item.trello.url
+    debugger
+  }
+
   renderItem(item) {
     return (
       <Card key={item._id} id={item._id}>
@@ -35,8 +44,15 @@ export class ListOfRequests extends Component {
           <CardTitle>
             <a href={item.link} target="_blank">{item.telegram}</a>
           </CardTitle>
+          {
+            item.pubdate && (
+              <CardSubtitle>{ distanceInWordsToNow(item.pubdate) } ago</CardSubtitle>
+            )
+          }
           <CardText>{item.comment}</CardText>
-          <Button>Перейти в trello</Button>
+          {
+            item.trello && <Button onClick={this.handleButtonClick.bind(this, item)}>Перейти в trello</Button>
+          }
         </CardBody>
       </Card>
     )
