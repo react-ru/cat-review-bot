@@ -1,10 +1,14 @@
-#!/usr/local/bin/node
+#!/usr/local/bin/node --experimental-modules
 
 import 'dotenv/config'
 import mongoose from 'mongoose'
 import { bot } from './bot'
 import { server as frontendServer } from './frontend/server.mjs'
 import { api } from './api'
+
+console.group('process.env =')
+console.log(process.env)
+console.groupEnd()
 
 mongoose.connect(process.env.MONGOOSE_URI)
 

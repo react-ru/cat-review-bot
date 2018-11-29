@@ -1,7 +1,7 @@
 {
   "name": "cat-review-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "Бот раздела кот Ревьюн русскоязычного сообщества react разработчиков в telegram",
   "main": "index.js",
   "dependencies": {
     "@awaitjs/express": "^0.1.4",
@@ -47,6 +47,13 @@
     "dev": "nodemon --experimental-modules start.mjs"
   },
   "keywords": [],
-  "author": "",
-  "license": "ULICENSED"
+  "author": "YChebotaev <yury.79120345101@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/react-ru/cat-review-bot"
+  },
+  "bugs": {
+    "url": "https://github.com/react-ru/cat-review-bot/issues"
+  },
+  "license": "UNLICENSED"
 }

@@ -80,3 +80,5 @@ typings/
 
 public/js/frontend.js
 mongodb_data/
+deploy.sh
+image.tar
