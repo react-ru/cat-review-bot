@@ -9,12 +9,13 @@ import {
   CardText,
   Button
 } from 'reactstrap'
-import { PageHead } from './PageHead'
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
+import { PageHead } from './PageHead'
+import { Repeater } from './Repeater'
 
 export class ListOfRequests extends Component {
   constructor(props) {
-    super()
+    super(props)
     this.state = {
       items: []
     }
@@ -63,9 +64,11 @@ export class ListOfRequests extends Component {
           <h1>List of Requests</h1>
         </PageHead>
         <CardColumns>
-          {
-            this.state.items.map(this.renderItem, this)
-          }
+          <Repeater
+            items={this.state.items}
+            render={this.renderItem}
+            thisArg={this}
+          />
         </CardColumns>
       </Container>
     )

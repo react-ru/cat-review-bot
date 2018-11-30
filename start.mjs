@@ -6,10 +6,6 @@ import { bot } from './bot'
 import { server as frontendServer } from './frontend/server.mjs'
 import { api } from './api'
 
-console.group('process.env =')
-console.log(process.env)
-console.groupEnd()
-
 mongoose.connect(process.env.MONGOOSE_URI)
 
 bot.startPolling()

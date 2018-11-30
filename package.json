@@ -13,10 +13,13 @@
     "date-fns": "^1.29.0",
     "dotenv": "^6.1.0",
     "express": "^4.16.4",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "mongoose": "^5.3.13",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "reactstrap": "^6.5.0",
     "telegraf": "^3.25.0"
   },
