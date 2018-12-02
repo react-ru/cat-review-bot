@@ -79,6 +79,7 @@ typings/
 .dynamodb/ 
 
 public/js/frontend.js
+public/js/frontend.js.map
 mongodb_data/
 deploy.sh
 image.tar
